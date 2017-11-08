@@ -13,7 +13,7 @@ require("config.php");
 <head>
     <title><?php echo $config_sitename; ?></title>
 
-    <link href="stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="CSS-files/stylesheet.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="header">
@@ -31,6 +31,8 @@ require("config.php");
         if(isset($_SESSION['SESS_LOGGEDIN']))
         {
             echo "Logged in as <strong>" . $_SESSION['SESS_USERNAME']. "</strong>[<a href='logout.php'>logout</a>]";
+        }elseif( isset($_SESSION['SESS_ADMINLOGGEDIN'])){
+            echo "Logged in as admin <strong>" . $_SESSION['SESS_ADMINUSERNAME']. "</strong>[<a href='adminlogout.php'>logout</a>]";
         }
         else
         {

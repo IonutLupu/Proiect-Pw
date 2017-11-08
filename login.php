@@ -1,13 +1,14 @@
 <?php
 session_start();
 require("config.php");
+
 if(isset($_SESSION['SESS_LOGGEDIN'])) {
     header("Location: " . $config_basedir);
 }
 
 if(isset($_POST['submit']))
 {
-    $loginsql = "SELECT * FROM logins WHERE username = '" . $_POST['userBox']. "' AND password = '" . sha1($_POST['passBox']) . "'";
+    $loginsql = "SELECT * FROM logins WHERE username = '" . $_POST['userBox']. "' AND password = '" . $_POST['passBox'] . "'";
     $loginres = mysqli_query($db, $loginsql);
     $numrows = mysqli_num_rows($loginres);
     if($numrows == 1)
@@ -25,7 +26,8 @@ if(isset($_POST['submit']))
     }
     else
     {
-        header("Location: http://" .$_SERVER['HTTP_HOST']. $_SERVER['SCRIPT_NAME'] . "?error=1");
+        //header("Location: http://" .$_SERVER['HTTP_HOST']. $_SERVER['SCRIPT_NAME'] . "?error=1");
+        require("adminlogin.php");
     }
 }
 
